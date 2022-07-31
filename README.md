@@ -1,7 +1,7 @@
 # Ports manager
 
 # Build and run from terminal
-go build
+go build .
 go run .
 
 # Build and run with docker
