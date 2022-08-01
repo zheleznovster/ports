@@ -6,11 +6,10 @@ Ports manager loads data from a json file into a map in memory.
 
 # Build and run from terminal
 
-go build .
-go run .
+go build .  
+go run .  
 
 # Build and run with docker
 
-docker build -t ports .
-docker run ports
-
+docker build -t ports .  
+docker run ports  
