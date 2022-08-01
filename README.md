@@ -28,7 +28,8 @@ ports
 │   │                then uses parsed data to fill the database  
 │   ├── manager_test.go - tests for func LoadData
 ├── parsers
-│   ├── parser.go - parser to process ports input json one record at a time to avoid loading whole file into memory
+│   ├── parser.go - parser to process ports input json one record at a time 
+│   │               to avoid loading whole file into memory
 │   ├── parser_test.go - tests for parser funcs
 ├── signals
 │   ├── signal.go - handle os signals
