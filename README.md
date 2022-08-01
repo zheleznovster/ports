@@ -13,3 +13,8 @@ go run .
 
 docker build -t ports .  
 docker run ports  
+
+
+# Note:
+
+I feel like I should have added http api for CRUD operations on the db, but since it wasn't in the assignment, and it was recommended not to take more than 2 hours, I decided to leave the http api out.
