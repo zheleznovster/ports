@@ -14,29 +14,26 @@ go run .
 docker build -t ports .  
 docker run ports  
 
-Packages
+# Structure
+
 ```
-ports  
-|  
-|------- data  
-|           |------- ports.json - json input file with ports data         
-|------- database   
-|           |------- db.go - contains a Database struct   
-|                    with a map to hold data and a mutex for parallel processing,   
-|                    plus CRUD methods: Get, Insert, Update, Delete  
-|           |------- db_test.go - contains tests for database Get, Insert, Update, Delete  
-|------- managers  
-|           |------- manager.go - contains Manager struct   
-|                    and NewManager and LoadData to create a parser and a database,   
-|                    and load data from parser output into database  
-|           |------- manager_test.go - contains tests for LoadData  
-|------- parsers  
-|           |------- parser.go - contains Parser struct with a file pointer and a json decoder and functions OpenFile, ParseNextRecord, CloseFile, and readPortCode  
-|           |------- parser_test.go - contains tests for OpenFile, ParseNextRecord, CloseFile functions  
-|------- signals  
-|           |------- signal.go - terminates the service upon os signals such as SIGINT, SIGTERM SIGQUIT, SIGKILL  
-|------- testdata - contains test data for various edge cases  
+ports
+├──data
+│   ├── ports.json
+│──database
+│   ├── db.go
+│   ├── db_test.go
+├── managers
+│   ├── manager.go
+│   ├── manager_test.go
+├── parsers
+│   ├── parser.go
+│   ├── parser_test.go
+├── signals
+│   ├── signal.go
+├── testdata
 ```
+
 
 # Notes:
 
