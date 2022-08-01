@@ -32,6 +32,10 @@ ports
 ├── signals
 │   ├── signal.go - handle os signals
 ├── testdata - test json files for various edge cases
+├── Dockerfile - build container using docker 
+├── go.mod
+├── main.go - entry point
+├── README.md
 ```
 
 
