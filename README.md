@@ -19,7 +19,7 @@ docker run ports
 ```
 ports
 ├──data
-│   ├── ports.json
+│   ├── ports.json - input file for database
 │──database
 │   ├── db.go - synced map with CRUD funcs
 │   ├── db_test.go - tests for CRUD funcs
