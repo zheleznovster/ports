@@ -24,8 +24,9 @@ ports
 │   ├── db.go - synced map with CRUD funcs
 │   ├── db_test.go - tests for CRUD funcs
 ├── managers
-│   ├── manager.go
-│   ├── manager_test.go
+│   ├── manager.go - func LoadData - creates a parser and a database, 
+│   │                then uses parsed data to fill the database  
+│   ├── manager_test.go - tests for func LoadData
 ├── parsers
 │   ├── parser.go - parser to process ports input json one record at a time to avoid loading whole file into memory
 │   ├── parser_test.go - tests for parser funcs
