@@ -21,17 +21,17 @@ ports
 ├──data
 │   ├── ports.json
 │──database
-│   ├── db.go
-│   ├── db_test.go
+│   ├── db.go - synced map with CRUD funcs
+│   ├── db_test.go - tests for CRUD funcs
 ├── managers
 │   ├── manager.go
 │   ├── manager_test.go
 ├── parsers
-│   ├── parser.go
-│   ├── parser_test.go
+│   ├── parser.go - parser to process ports input json one record at a time to avoid loading whole file into memory
+│   ├── parser_test.go - tests for parser funcs
 ├── signals
-│   ├── signal.go
-├── testdata
+│   ├── signal.go - handle os signals
+├── testdata - test json files for various edge cases
 ```
 
 
