@@ -19,7 +19,7 @@ Packages
 ports
 |
 |------- data 
-|           |------- ports.json       
+|           |------- ports.json - json input file with ports data       
 |------- database 
 |           |------- db.go - contains a Database struct 
 |                    with a map to hold data and a mutex for parallel processing, 
