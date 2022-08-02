@@ -6,6 +6,7 @@ import (
 	"ports/signals"
 )
 
+//nolint: forbidigo
 func main() {
 	fmt.Println("Starting ports manager")
 

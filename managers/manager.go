@@ -24,6 +24,7 @@ func NewManager() *Manager {
 	}
 }
 
+//nolint: forbidigo
 // LoadData parses input file and fills the database with ports data
 func (manager *Manager) LoadData(path string) error {
 
