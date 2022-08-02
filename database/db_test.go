@@ -9,7 +9,6 @@ import (
 func TestDatabase_Delete(t *testing.T) {
 	type fields struct {
 		Data map[string]interface{}
-		mtx  sync.RWMutex
 	}
 	type args struct {
 		key string
@@ -67,7 +66,6 @@ func TestDatabase_Delete(t *testing.T) {
 func TestDatabase_Get(t *testing.T) {
 	type fields struct {
 		Data map[string]interface{}
-		mtx  sync.RWMutex
 	}
 	type args struct {
 		key string
@@ -134,7 +132,6 @@ func TestDatabase_Get(t *testing.T) {
 func TestDatabase_Insert(t *testing.T) {
 	type fields struct {
 		Data map[string]interface{}
-		mtx  sync.RWMutex
 	}
 	type args struct {
 		key   string
@@ -201,7 +198,6 @@ func TestDatabase_Insert(t *testing.T) {
 func TestDatabase_Update(t *testing.T) {
 	type fields struct {
 		Data map[string]interface{}
-		mtx  sync.RWMutex
 	}
 	type args struct {
 		key   string
