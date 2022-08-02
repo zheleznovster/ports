@@ -27,6 +27,7 @@ ISTALLTEST      	=   $(GOINSTALL) github.com/boumenot/gocover-cobertura@$(VCOUBE
 install-linter:
 	@echo -e $(BLUE_COLOR)[install-linter]$(DEFAULT_COLOR)
 ifeq (,$(wildcard $(LOCALBIN)/$(LINTER)))
+	@echo 'installing linter'
 	@$(INSTALLLINTERBIN)
 	@echo 'linter installed'
 else
