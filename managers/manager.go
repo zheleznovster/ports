@@ -43,6 +43,9 @@ func (manager *Manager) LoadData(path string) error {
 	// Read the array open bracket
 	var token any
 	token, err = manager.Parser.Decoder.Token()
+	if err != nil {
+		return fmt.Errorf("(parser *Parser) LoadData error: %w", err)
+	}
 	fmt.Println(token)
 	if token != json.Delim('{') {
 		return fmt.Errorf("(parser *Parser) LoadData error: json must start with open curly brace {")
