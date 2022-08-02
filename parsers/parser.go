@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 type Parser struct {
@@ -14,7 +15,7 @@ type Parser struct {
 // OpenFile opens a given json file and initializes a json decoder
 func (parser *Parser) OpenFile(path string) error {
 	var err error
-	parser.FilePointer, err = os.Open(path)
+	parser.FilePointer, err = os.Open(filepath.Clean(path))
 	if err != nil {
 		return fmt.Errorf("(parser *Parser) OpenFile error: %w", err)
 	}
