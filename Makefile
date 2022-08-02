@@ -15,10 +15,12 @@ VLINTER            = "v1.47.3"
 
 install-linter:
 	@echo -e $(BLUE_COLOR)[install-linter]$(DEFAULT_COLOR)
-#ifeq (,$(wildcard $(LOCALBIN)/$(LINTER)))
+ifeq (,$(wildcard $(LOCALBIN)/$(LINTER)))
 	@$(INSTALLLINTERBIN)
-	@echo 'done'
-#endif
+	@echo 'linter installed'
+else
+	@echo 'linter already installed'
+endif
 
 lint: install-linter golangci-lint
 
