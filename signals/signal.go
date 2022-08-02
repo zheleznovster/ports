@@ -15,8 +15,7 @@ func WaitForTerminationSignals() os.Signal {
 		syscall.SIGHUP,  // terminal closed
 		syscall.SIGINT,  // CTRL+C pressed
 		syscall.SIGTERM, // terminate
-		syscall.SIGQUIT, // quit with core dump
-		syscall.SIGKILL) // process killed
+		syscall.SIGQUIT) // quit with core dump
 
 	// this blocks until the signal is received
 	return <-stop
