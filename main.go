@@ -14,7 +14,7 @@ func main() {
 	datapath := "data/ports.json"
 	err := manager.LoadData(datapath)
 	if err != nil {
-		fmt.Errorf("could not load %v: %w", datapath, err)
+		fmt.Println(fmt.Errorf("could not load %v: %w", datapath, err))
 	}
 
 	// wait for and handle os signals
