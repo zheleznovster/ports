@@ -1,3 +1,6 @@
+//go:build go1.18
+// +build go1.18
+
 package database
 
 import (
@@ -54,13 +57,32 @@ func TestDatabase_Delete(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Database{
 				Data: tt.fields.Data,
-				mtx:  sync.RWMutex{},
+				Mtx:  sync.RWMutex{},
 			}
 			if got := c.Delete(tt.args.key); got != tt.want {
 				t.Errorf("Delete() = %v, want %v", got, tt.want)
 			}
 		})
 	}
+}
+
+func FuzzDatabase_Delete(f *testing.F) {
+	db := NewDatabase()
+	f.Add("1")
+	f.Fuzz(func(t *testing.T, key string) {
+		added := db.Insert(key, 1)
+		deleted := db.Delete(key)
+
+		added2 := db.Insert(key, 1)
+		deleted2 := db.Delete(key)
+
+		if added != added2 {
+			t.Errorf("Insert() did not return the same result the 2nd time")
+		}
+		if deleted2 != deleted {
+			t.Errorf("Delete() did not return the same result the 2nd time")
+		}
+	})
 }
 
 func TestDatabase_Get(t *testing.T) {
@@ -116,7 +138,7 @@ func TestDatabase_Get(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Database{
 				Data: tt.fields.Data,
-				mtx:  sync.RWMutex{},
+				Mtx:  sync.RWMutex{},
 			}
 			got, got1 := c.Get(tt.args.key)
 			if !reflect.DeepEqual(got, tt.want) {
@@ -186,7 +208,7 @@ func TestDatabase_Insert(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Database{
 				Data: tt.fields.Data,
-				mtx:  sync.RWMutex{},
+				Mtx:  sync.RWMutex{},
 			}
 			if got := c.Insert(tt.args.key, tt.args.value); got != tt.want {
 				t.Errorf("Insert() = %v, want %v", got, tt.want)
@@ -244,7 +266,7 @@ func TestDatabase_Update(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Database{
 				Data: tt.fields.Data,
-				mtx:  sync.RWMutex{},
+				Mtx:  sync.RWMutex{},
 			}
 			if got := c.Update(tt.args.key, tt.args.value); got != tt.want {
 				t.Errorf("Update() = %v, want %v", got, tt.want)
