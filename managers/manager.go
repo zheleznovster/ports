@@ -26,7 +26,7 @@ func NewManager() *Manager {
 
 //nolint: forbidigo
 // LoadData parses input file and fills the database with ports data
-func (manager *Manager) LoadData(path string) error {
+func (manager Manager) LoadData(path string) error {
 
 	if err := manager.Parser.OpenFile(path); err != nil {
 		return fmt.Errorf("LoadData error: %w", err)

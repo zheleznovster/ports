@@ -6,14 +6,14 @@ import (
 
 type Database struct {
 	Data map[string]interface{}
-	mtx  sync.RWMutex
+	Mtx  sync.RWMutex
 }
 
 // NewDatabase initializes a database and the underlying map
 func NewDatabase() *Database {
 	return &Database{
 		Data: make(map[string]interface{}, 1000),
-		mtx:  sync.RWMutex{},
+		Mtx:  sync.RWMutex{},
 	}
 }
 
@@ -29,8 +29,8 @@ func (c *Database) Get(key string) (interface{}, bool) {
 		return nil, false
 	}
 
-	c.mtx.Lock()
-	defer c.mtx.Unlock()
+	c.Mtx.Lock()
+	defer c.Mtx.Unlock()
 
 	value, ok := c.Data[key]
 
@@ -50,8 +50,8 @@ func (c *Database) Insert(key string, value interface{}) bool {
 		return false
 	}
 
-	c.mtx.Lock()
-	defer c.mtx.Unlock()
+	c.Mtx.Lock()
+	defer c.Mtx.Unlock()
 
 	if _, ok := c.Data[key]; ok {
 		return false
@@ -74,8 +74,8 @@ func (c *Database) Update(key string, value interface{}) bool {
 		return false
 	}
 
-	c.mtx.Lock()
-	defer c.mtx.Unlock()
+	c.Mtx.Lock()
+	defer c.Mtx.Unlock()
 
 	if _, ok := c.Data[key]; !ok {
 		return false
@@ -98,8 +98,8 @@ func (c *Database) Delete(key string) bool {
 		return false
 	}
 
-	c.mtx.Lock()
-	defer c.mtx.Unlock()
+	c.Mtx.Lock()
+	defer c.Mtx.Unlock()
 
 	// before deleting, make sure the element exists
 	// returning false allows the user to maybe stop trying to delete something that doesn't exist
