@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"ports/models"
+	"ports/internal/models"
 )
 
 type SmallFileParser struct {

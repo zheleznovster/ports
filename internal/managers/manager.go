@@ -2,8 +2,8 @@ package managers
 
 import (
 	"fmt"
-	"ports/database"
-	"ports/parsers"
+	"ports/internal/database"
+	"ports/internal/parsers"
 )
 
 // Manager a db and a parser (and perhaps an http server)

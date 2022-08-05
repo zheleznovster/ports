@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"ports/database"
-	"ports/managers"
-	"ports/parsers"
-	"ports/signals"
+	"ports/internal/database"
+	"ports/internal/managers"
+	"ports/internal/parsers"
+	"ports/internal/signals"
 )
 
 //nolint: forbidigo

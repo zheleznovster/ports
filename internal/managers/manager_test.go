@@ -16,17 +16,17 @@ func TestManager_LoadData(t *testing.T) {
 	}{
 		{
 			name:    "test existing file",
-			args:    args{path: "../testdata/good.json"},
+			args:    args{path: "../../testdata/good.json"},
 			wantErr: false,
 		},
 		{
 			name:    "test existing file with duplicates",
-			args:    args{path: "../testdata/duplicatedports.json"},
+			args:    args{path: "../../testdata/duplicatedports.json"},
 			wantErr: false,
 		},
 		{
 			name:    "test empty file",
-			args:    args{path: "../testdata/empty.json"},
+			args:    args{path: "../../testdata/empty.json"},
 			wantErr: true,
 		},
 	}

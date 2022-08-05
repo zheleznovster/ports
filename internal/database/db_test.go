@@ -66,6 +66,7 @@ func TestDatabase_Delete(t *testing.T) {
 	}
 }
 
+/*
 func FuzzDatabase_Delete(f *testing.F) {
 	db := NewDatabase()
 	f.Add("1")
@@ -84,7 +85,7 @@ func FuzzDatabase_Delete(f *testing.F) {
 		}
 	})
 }
-
+*/
 func TestDatabase_Get(t *testing.T) {
 	type fields struct {
 		Data map[string]interface{}

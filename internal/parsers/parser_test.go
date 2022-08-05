@@ -30,7 +30,7 @@ func TestParser_OpenFile(t *testing.T) {
 		{
 			name:    "open existing file",
 			fields:  fields{},
-			args:    args{path: "../testdata/empty.json"},
+			args:    args{path: "../../testdata/empty.json"},
 			wantErr: false,
 		},
 	}
@@ -58,7 +58,7 @@ func TestParser_ParseNextRecord(t *testing.T) {
 	}{
 		{
 			name: "test parsing good json",
-			path: "../testdata/good.json",
+			path: "../../testdata/good.json",
 			want: "AEAJM",
 			want1: map[string]interface{}{
 				"alias":       []interface{}{},
@@ -76,28 +76,28 @@ func TestParser_ParseNextRecord(t *testing.T) {
 		},
 		{
 			name:    "test parsing malformed json",
-			path:    "../testdata/malformed.json",
+			path:    "../../testdata/malformed.json",
 			want:    "",
 			want1:   nil,
 			wantErr: true,
 		},
 		{
 			name:    "test parsing empty json",
-			path:    "../testdata/empty.json",
+			path:    "../../testdata/empty.json",
 			want:    "",
 			want1:   nil,
 			wantErr: false,
 		},
 		{
 			name:    "test parsing empty json array",
-			path:    "../testdata/emptyarray.json",
+			path:    "../../testdata/emptyarray.json",
 			want:    "",
 			want1:   nil,
 			wantErr: true,
 		},
 		{
 			name:    "test parsing empty json object",
-			path:    "../testdata/emptyobject.json",
+			path:    "../../testdata/emptyobject.json",
 			want:    "",
 			want1:   nil,
 			wantErr: true,
@@ -105,28 +105,28 @@ func TestParser_ParseNextRecord(t *testing.T) {
 
 		{
 			name:    "test parsing single opening bracket",
-			path:    "../testdata/openingbracket.json",
+			path:    "../../testdata/openingbracket.json",
 			want:    "",
 			want1:   nil,
 			wantErr: true,
 		},
 		{
 			name:    "test parsing single opening brace",
-			path:    "../testdata/openingbrace.json",
+			path:    "../../testdata/openingbrace.json",
 			want:    "",
 			want1:   nil,
 			wantErr: true,
 		},
 		{
 			name:    "test parsing single closing brace",
-			path:    "../testdata/closingbrace.json",
+			path:    "../../testdata/closingbrace.json",
 			want:    "",
 			want1:   nil,
 			wantErr: false,
 		},
 		{
 			name:    "test parsing single random character",
-			path:    "../testdata/randomcharacter.json",
+			path:    "../../testdata/randomcharacter.json",
 			want:    "",
 			want1:   nil,
 			wantErr: true,
@@ -174,7 +174,7 @@ func TestParser_CloseFile(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			path:    "../testdata/empty.json",
+			path:    "../../testdata/good.json",
 			name:    "test closing open file",
 			fields:  fields{},
 			wantErr: false,
