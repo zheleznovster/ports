@@ -13,10 +13,17 @@ type LargeFileParser struct {
 	Decoder     *json.Decoder
 }
 
+//nolint: forbidigo
 func (parser *LargeFileParser) ParseFile(processRecord func(key string, rec interface{}) error) error {
 	if err := parser.openFile(parser.Path); err != nil {
-		return fmt.Errorf("ParseFile error: %w", err)
+		return fmt.Errorf("(parser *LargeFileParser) ParseFile error: %w", err)
 	}
+	defer func() {
+		err := parser.closeFile()
+		if err != nil {
+			fmt.Println(fmt.Errorf("(parser *LargeFileParser) ParseFile Error: %w", err))
+		}
+	}()
 
 	// Read the array open bracket
 	token, err := parser.Decoder.Token()
@@ -46,8 +53,8 @@ func (parser *LargeFileParser) ParseFile(processRecord func(key string, rec inte
 		fmt.Printf("Port Data: %+v\n", portRecord)
 
 	}
-	fmt.Println("LargeFileParser Loaded Data")
-	return parser.closeFile()
+	fmt.Println("(parser *LargeFileParser) ParseFile succeeded")
+	return nil
 }
 
 // openFile opens a given json file and initializes a json decoder
