@@ -6,29 +6,34 @@ import (
 	"ports/managers"
 	"ports/parsers"
 	"ports/signals"
-	"sync"
 )
 
 //nolint: forbidigo
 func main() {
 	fmt.Println("Starting ports manager")
 
-	// use Manager via pointer
-	managerPtr := managers.NewManager()
-
 	datapath := "data/ports.json"
-	err := managerPtr.LoadData(datapath)
+
+	// use Manager via pointer
+	managerPtr, err := managers.NewManager(datapath)
+	if err != nil {
+		fmt.Println(fmt.Errorf("could not create Manager for %v: %w", datapath, err))
+	}
+
+	err = managerPtr.LoadData()
 	if err != nil {
 		fmt.Println(fmt.Errorf("could not load %v: %w", datapath, err))
 	}
 
 	// use Manager via non-pointer
 	manager := managers.Manager{
-		Db:     &database.Database{make(map[string]interface{}, 1000), sync.RWMutex{}},
-		Parser: &parsers.Parser{},
+		Db: &database.Database{Data: make(map[string]interface{}, 1000)},
+		Parser: &parsers.LargeFileParser{
+			FileParser: parsers.FileParser{Path: datapath},
+		},
 	}
 
-	err = manager.LoadData(datapath)
+	err = manager.LoadData()
 	if err != nil {
 		fmt.Println(fmt.Errorf("could not load %v: %w", datapath, err))
 	}
@@ -36,4 +41,5 @@ func main() {
 	// wait for and handle os signals
 	termSignal := signals.WaitForTerminationSignals()
 	fmt.Printf("\nPorts database received signal: %v\n", termSignal.String())
+
 }

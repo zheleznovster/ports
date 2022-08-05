@@ -36,12 +36,12 @@ func TestParser_OpenFile(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			parser := &Parser{
+			parser := &LargeFileParser{
 				FilePointer: tt.fields.FilePointer,
 				Decoder:     tt.fields.Decoder,
 			}
-			if err := parser.OpenFile(tt.args.path); (err != nil) != tt.wantErr {
-				t.Errorf("OpenFile() error = %v, wantErr %v", err, tt.wantErr)
+			if err := parser.openFile(tt.args.path); (err != nil) != tt.wantErr {
+				t.Errorf("openFile() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
@@ -135,22 +135,22 @@ func TestParser_ParseNextRecord(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 
-			parser := &Parser{}
-			err := parser.OpenFile(tt.path)
+			parser := &LargeFileParser{}
+			err := parser.openFile(tt.path)
 			if err != nil {
 				t.Errorf("TestParser_ParseNextRecord error: %v", err)
 			}
 
-			got, got1, err := parser.ParseNextRecord()
+			got, got1, err := parser.parseNextRecord()
 			if (err != nil) != tt.wantErr {
-				t.Errorf("ParseNextRecord() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("parseNextRecord() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if got != tt.want {
-				t.Errorf("ParseNextRecord() got = %v, want %v", got, tt.want)
+				t.Errorf("parseNextRecord() got = %v, want %v", got, tt.want)
 			}
 			if !reflect.DeepEqual(got1, tt.want1) {
-				t.Errorf("ParseNextRecord() got1 = %v, want %v", got1, tt.want1)
+				t.Errorf("parseNextRecord() got1 = %v, want %v", got1, tt.want1)
 			}
 		})
 	}
@@ -181,20 +181,20 @@ func TestParser_CloseFile(t *testing.T) {
 		},
 	}
 	t.Run(tests[0].name, func(t *testing.T) {
-		parser := &Parser{}
-		if err := parser.CloseFile(); (err != nil) != tests[0].wantErr {
-			t.Errorf("CloseFile() error = %v, wantErr %v", err, tests[0].wantErr)
+		parser := &LargeFileParser{}
+		if err := parser.closeFile(); (err != nil) != tests[0].wantErr {
+			t.Errorf("closeFile() error = %v, wantErr %v", err, tests[0].wantErr)
 		}
 	})
 
 	t.Run(tests[1].name, func(t *testing.T) {
-		parser := &Parser{}
-		err := parser.OpenFile(tests[1].path)
+		parser := &LargeFileParser{}
+		err := parser.openFile(tests[1].path)
 		if err != nil {
 			t.Errorf("TestParser_CloseFile error: %v", err)
 		}
-		if err := parser.CloseFile(); (err != nil) != tests[1].wantErr {
-			t.Errorf("CloseFile() error = %v, wantErr %v", err, tests[1].wantErr)
+		if err := parser.closeFile(); (err != nil) != tests[1].wantErr {
+			t.Errorf("closeFile() error = %v, wantErr %v", err, tests[1].wantErr)
 		}
 	})
 }

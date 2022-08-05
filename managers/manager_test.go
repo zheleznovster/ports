@@ -15,11 +15,6 @@ func TestManager_LoadData(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "test non existent file",
-			args:    args{path: "x"},
-			wantErr: true,
-		},
-		{
 			name:    "test existing file",
 			args:    args{path: "../testdata/good.json"},
 			wantErr: false,
@@ -37,8 +32,8 @@ func TestManager_LoadData(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			manager := NewManager()
-			if err := manager.LoadData(tt.args.path); (err != nil) != tt.wantErr {
+			manager, _ := NewManager(tt.args.path)
+			if err := manager.LoadData(); (err != nil) != tt.wantErr {
 				t.Errorf("LoadData() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
