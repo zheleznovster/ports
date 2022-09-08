@@ -47,3 +47,4 @@ I feel like I should have added http api for CRUD operations on the db, but sinc
 
 Initially I planned to read the input file using multiple goroutines, and that's why I used mutex read/write locks in the database. However, I did not have enough time to implement parsing the input file in parallel, so the lock/unlock functionality is not used.
 
+...
